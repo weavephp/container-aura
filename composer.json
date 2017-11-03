@@ -1,0 +1,20 @@
+{
+	"name": "weavephp/container-aura",
+	"description": "Weave glue-framework Aura.Di Container adaptor",
+	"type": "package",
+	"version": "0.0.1",
+	"authors": [
+		{
+			"name": "Robert Goldsmith",
+			"email": "r.s.goldsmith@far-blue.co.uk"
+		}
+	],
+	"require": {
+		"aura/di": "^3.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Weave\\Container\\Aura\\": "src/"
+		}
+	}
+}
