@@ -1,8 +1,9 @@
 {
 	"name": "weavephp/container-aura",
 	"description": "Weave glue-framework Aura.Di Container adaptor",
-	"type": "package",
-	"version": "0.0.1",
+	"type": "weave-adaptor",
+	"keywords" : ["weave", "container", "adptor"],
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Robert Goldsmith",
