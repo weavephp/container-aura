@@ -18,14 +18,14 @@ class WeaveConfig extends ContainerConfig
 	 *
 	 * @var callable
 	 */
-	protected $_pipelineProvider;
+	protected $pipelineProvider;
 
 	/**
 	 * A callable to configure the routes for the chosen Router Adaptor.
 	 *
 	 * @var callable
 	 */
-	protected $_routeProvider;
+	protected $routeProvider;
 
 	/**
 	 * Constructor.
@@ -35,8 +35,8 @@ class WeaveConfig extends ContainerConfig
 	 */
 	public function __construct($pipelineProvider, $routeProvider)
 	{
-		$this->_pipelineProvider = $pipelineProvider;
-		$this->_routeProvider = $routeProvider;
+		$this->pipelineProvider = $pipelineProvider;
+		$this->routeProvider = $routeProvider;
 	}
 
 	/**
@@ -59,7 +59,7 @@ class WeaveConfig extends ContainerConfig
 		);
 
 		$container->params[\Weave\Middleware\Middleware::class] = [
-			'pipelineProvider' => $this->_pipelineProvider,
+			'pipelineProvider' => $this->pipelineProvider,
 			'resolver' => $container->lazyGet('instantiator')
 		];
 
@@ -68,7 +68,7 @@ class WeaveConfig extends ContainerConfig
 		];
 
 		$container->params[\Weave\Router\Router::class] = [
-			'routeProvider' => $this->_routeProvider,
+			'routeProvider' => $this->routeProvider,
 			'resolver' => $container->lazyGet('instantiator')
 		];
 	}
