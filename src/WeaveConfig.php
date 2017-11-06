@@ -58,18 +58,21 @@ class WeaveConfig extends ContainerConfig
 			}
 		);
 
-		$container->params[\Weave\Middleware\Middleware::class] = [
-			'pipelineProvider' => $this->pipelineProvider,
-			'resolver' => $container->lazyGet('instantiator')
+		$container->types[\Weave\Resolve\ResolveAdaptorInterface::class] = $container->lazyNew(
+			\Weave\Resolve\Resolve::class
+		);
+
+		$container->params[\Weave\Resolve\Resolve::class] = [
+			'instantiator' => $container->lazyGet('instantiator')
 		];
 
-		$container->params[\Weave\Middleware\Dispatch::class] = [
-			'resolver' => $container->lazyGet('instantiator')
+		$container->params[\Weave\Middleware\Middleware::class] = [
+			'pipelineProvider' => $this->pipelineProvider,
+			'instantiator' => $container->lazyGet('instantiator')
 		];
 
 		$container->params[\Weave\Router\Router::class] = [
 			'routeProvider' => $this->routeProvider,
-			'resolver' => $container->lazyGet('instantiator')
 		];
 	}
 }
