@@ -67,8 +67,7 @@ class WeaveConfig extends ContainerConfig
 		];
 
 		$container->params[\Weave\Middleware\Middleware::class] = [
-			'pipelineProvider' => $this->pipelineProvider,
-			'instantiator' => $container->lazyGet('instantiator')
+			'pipelineProvider' => $this->pipelineProvider
 		];
 
 		$container->params[\Weave\Router\Router::class] = [
