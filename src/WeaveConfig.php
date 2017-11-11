@@ -62,6 +62,10 @@ class WeaveConfig extends ContainerConfig
 			\Weave\Resolve\Resolve::class
 		);
 
+		$container->types[\Weave\Dispatch\DispatchAdaptorInterface::class] = $container->lazyNew(
+			\Weave\Dispatch\Dispatch::class
+		);
+
 		$container->params[\Weave\Resolve\Resolve::class] = [
 			'instantiator' => $container->lazyGet('instantiator')
 		];
