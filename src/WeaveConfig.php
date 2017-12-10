@@ -58,6 +58,22 @@ class WeaveConfig extends ContainerConfig
 			}
 		);
 
+		// Pipeline provider is a service so it can be unit tested.
+		$container->set(
+			'pipelineProvider',
+			function () {
+				return $this->pipelineProvider;
+			}
+		);
+
+		// Route provider is a service so it can be unit tested.
+		$container->set(
+			'routeProvider',
+			function () {
+				return $this->routeProvider;
+			}
+		);
+
 		$container->types[\Weave\Resolve\ResolveAdaptorInterface::class] = $container->lazyNew(
 			\Weave\Resolve\Resolve::class
 		);
@@ -71,11 +87,11 @@ class WeaveConfig extends ContainerConfig
 		];
 
 		$container->params[\Weave\Middleware\Middleware::class] = [
-			'pipelineProvider' => $this->pipelineProvider
+			'pipelineProvider' => $container->lazyGet('pipelineProvider')
 		];
 
 		$container->params[\Weave\Router\Router::class] = [
-			'routeProvider' => $this->routeProvider,
+			'routeProvider' => $container->lazyGet('routeProvider')
 		];
 	}
 }
