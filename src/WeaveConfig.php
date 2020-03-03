@@ -46,7 +46,7 @@ class WeaveConfig extends ContainerConfig
 	 *
 	 * @return null
 	 */
-	public function define(Container $container)
+	public function define(Container $container): void
 	{
 		$container->set(
 			'instantiator',

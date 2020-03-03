@@ -20,7 +20,7 @@ class AuraTestProvidersConfig extends ContainerConfig
 	 *
 	 * @return null
 	 */
-	public function define(Container $container)
+	public function define(Container $container): void
 	{
 		$container->params[AuraTestProviders::class] = [
 			'pipelineProvider' => $container->lazyGet('pipelineProvider'),
