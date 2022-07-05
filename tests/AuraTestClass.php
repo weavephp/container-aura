@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 /**
  * Weave Aura DIC Adaptor.
  */
@@ -15,17 +18,19 @@ class AuraTestClass
 		loadContainer as public;
 	}
 
-	protected function provideMiddlewarePipeline($pipelineName = null)
+	public $routeConfig = '';
+
+	protected function provideMiddlewarePipeline(?string $pipelineName = null): mixed
 	{
 		return $pipelineName . 'Foo';
 	}
 
-	protected function provideRouteConfiguration($router)
+	protected function provideRouteConfiguration(mixed $router): void
 	{
-		return $router . 'Ping';
+		$this->routeConfig = $router . 'Ping';
 	}
 
-	protected function provideContainerConfigs(array $config = [], $environment = null)
+	protected function provideContainerConfigs(array $config = [], ?string $environment = null): array
 	{
 		return [AuraTestProvidersConfig::class];
 	}

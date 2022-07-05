@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 /**
  * Weave Aura DIC Adaptor.
  */
@@ -56,6 +59,7 @@ class AuraTest extends TestCase
 		$this->assertEquals('WibbleFoo', $pipelineProvider('Wibble'));
 
 		$routeProvider = $providerTestInstance->routeProvider;
-		$this->assertEquals('WibblePing', $routeProvider('Wibble'));
+		$routeProvider('Wibble');
+		$this->assertEquals('WibblePing', $instance->routeConfig);
 	}
 }

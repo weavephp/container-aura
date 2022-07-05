@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 /**
  * Weave Aura DIC Adaptor.
  */
@@ -23,12 +26,12 @@ trait Aura
 	/**
 	 * Setup the Dependency Injection Container
 	 *
-	 * @param array  $config      Optional config array as provided from loadConfig().
-	 * @param string $environment Optional indication of the runtime environment.
+	 * @param array   $config      Optional config array as provided from loadConfig().
+	 * @param ?string $environment Optional indication of the runtime environment.
 	 *
 	 * @return callable A callable that can instantiate instances of classes from the DIC.
 	 */
-	protected function loadContainer(array $config = [], $environment = null)
+	protected function loadContainer(array $config = [], ?string $environment = null): callable
 	{
 		$containerConfigs = $this->provideContainerConfigs($config, $environment);
 		array_unshift(
@@ -38,7 +41,7 @@ trait Aura
 					return $this->provideMiddlewarePipeline($pipelineName);
 				},
 				function ($router) {
-					return $this->provideRouteConfiguration($router);
+					$this->provideRouteConfiguration($router);
 				}
 			)
 		);
@@ -46,16 +49,18 @@ trait Aura
 			$containerConfigs,
 			ContainerBuilder::AUTO_RESOLVE
 		);
-		return $this->container->get('instantiator');
+		$instantiator = $this->container->get('instantiator');
+		'@phan-var callable $instantiator';
+		return $instantiator;
 	}
 
 	/**
 	 * Returns an array of class strings and class instances for configuring the Aura DIC.
 	 *
-	 * @param array  $config      Optional config array as provided from loadConfig().
-	 * @param string $environment Optional indication of the runtime environment.
+	 * @param array   $config      Optional config array as provided from loadConfig().
+	 * @param ?string $environment Optional indication of the runtime environment.
 	 *
 	 * @return array
 	 */
-	abstract protected function provideContainerConfigs(array $config = [], $environment = null);
+	abstract protected function provideContainerConfigs(array $config = [], ?string $environment = null): array;
 }

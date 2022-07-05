@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 /**
  * Weave Aura DIC core config.
  */
@@ -32,7 +35,7 @@ class WeaveConfig extends ContainerConfig
 	 * @param callable $pipelineProvider The pipeline provider callable.
 	 * @param callable $routeProvider    The route provider callable.
 	 */
-	public function __construct($pipelineProvider, $routeProvider)
+	public function __construct(callable $pipelineProvider, callable $routeProvider)
 	{
 		$this->pipelineProvider = $pipelineProvider;
 		$this->routeProvider = $routeProvider;
@@ -44,7 +47,7 @@ class WeaveConfig extends ContainerConfig
 	 *
 	 * @param Container $container The DI container.
 	 *
-	 * @return null
+	 * @return void
 	 */
 	public function define(Container $container): void
 	{
