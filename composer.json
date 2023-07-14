@@ -11,8 +11,8 @@
 		}
 	],
 	"require": {
-		"php": "^8.0 | ^8.1",
-		"aura/di": "^4.0"
+		"php": "^8.0 | ^8.1 | ^8.2",
+		"aura/di": "^4.2"
 	},
 	"require-dev": {
 		"weavephp/weave": "^2.0.0",
